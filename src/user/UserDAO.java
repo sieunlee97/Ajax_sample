@@ -13,10 +13,10 @@ public class UserDAO {
 	
 	public UserDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/ajax";
+			String dbURL = "jdbc:mysql://localhost:3306/AJAX?serverTimezone=Asia/Seoul&useSSL=false";
 			String dbID="root";
 			String dbPassword="apmsetup";
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -24,11 +24,11 @@ public class UserDAO {
 	}
 	
 	public ArrayList<User> search(String userName){
-		String SQL = "SELECT * FROM user WHERE userName LINK ?";
+		String SQL = "SELECT * FROM user WHERE userName LIKE ?";
 		ArrayList<User> userList = new ArrayList<User>();
 		try {
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, userName);
+			pstmt.setString(1, "%"+ userName+"%");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				User user = new User();

@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="user.UserDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +11,7 @@
 	<script type="text/javascript">
 		var request = new XMLHttpRequest();
 		function searchFunction() {
-			request.open("Post", "./UserSearchServlet?userName"+encodeURIComponent(document.getElementById("userName").value), true);
+			request.open("Post", "./UserSearchServlet?userName="+encodeURIComponent(document.getElementById("userName").value), true);
 			request.onreadystatechange = searchProcess;
 			request.send(null);
 		}

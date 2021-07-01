@@ -13,12 +13,14 @@ public class UserDAO {
 	
 	public UserDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/AJAX?serverTimezone=Asia/Seoul&useSSL=false";
+			String dbURL = "jdbc:mysql://localhost:3306/ajax?serverTimezone=Asia/Seoul&useSSL=false";
 			String dbID="root";
 			String dbPassword="apmsetup";
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+			//System.out.println("DB연동 성공");
 		}catch (Exception e) {
+			System.out.println("DB연동 실패");
 			e.printStackTrace();
 		}
 	}
@@ -28,7 +30,7 @@ public class UserDAO {
 		ArrayList<User> userList = new ArrayList<User>();
 		try {
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, "%"+ userName+"%");
+			pstmt.setString(1,"%"+userName+"%");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				User user = new User();
@@ -36,6 +38,7 @@ public class UserDAO {
 				user.setUserAge(rs.getInt(2));
 				user.setUserGender(rs.getString(3));
 				user.setUserEmail(rs.getString(4));
+				userList.add(user);
 			}
 		}catch(Exception e){
 			e.printStackTrace();

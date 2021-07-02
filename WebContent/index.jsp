@@ -16,7 +16,7 @@
 			request.send(null);
 		}
 		function searchProcess(){
-			var table = document.getElementById("ajaxTable");
+			var table = document.getElementById("ajaxSearchTable");
 			table.innerHTML = "";
 			if(request.readyState == 4 && request.status == 200){
 				var object = eval('('+request.responseText+')');
@@ -54,7 +54,18 @@
 					<th style="background-color:#fafafa; text-align:center;">이메일</th>
 				</tr>
 			</thead>
-			<tbody id="ajaxTable">
+			<tbody id="ajaxSearchTable">
+			</tbody>
+		</table>
+	</div>
+	<div class="container">
+		<table class ="table" style="text-align:center; border:1pdx solid #dddddd">
+			<thead>
+				<tr>
+					<th style="background-color:#fafafa; text-align:center;">회원 등록 양식</th>
+				</tr>
+			</thead>
+			<tbody id="ajaxRegisterTable">
 			</tbody>
 		</table>
 	</div>
